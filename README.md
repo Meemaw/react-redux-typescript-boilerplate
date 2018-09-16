@@ -1,4 +1,10 @@
-# React Redux Typescript Boilerplate
+<!-- Name -->
+
+<h1 align="center">
+  <a href="https://github.com/Meemaw/react-redux-typescript-boilerplate">React Redux Typescript Boilerplate</a>
+</h1>
+
+<!-- Badges -->
 
 <p align="center">
 
@@ -24,7 +30,6 @@ A highly scalable `react-redux-typescript-boilerplate` with focus on best practi
 
 ### Features
 
-- CI integration with [Travis](https://travis-ci.org/)
 - Linting with [prettier](https://github.com/prettier/prettier)
 - Static type-checking with [Typescript](https://www.typescriptlang.org/)
 - Opinionatedly scalable folder structure
@@ -33,6 +38,7 @@ A highly scalable `react-redux-typescript-boilerplate` with focus on best practi
 - Testing with [Jest](https://jestjs.io/) and [Enzyme](https://github.com/airbnb/enzyme)
 - [Google Analyics](https://analytics.google.com/analytics/web/) HOC for page tracking
 - Highly intuitive and typed approach to resource fetching
+- CI integration with [Travis](https://travis-ci.org/)
 
 ###### Fetch API Usage
 
