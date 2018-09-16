@@ -24,6 +24,7 @@ A highly scalable `react-redux-typescript-boilerplate` with focus on best practi
 
 ### Features
 
+- CI integration with [Travis](https://travis-ci.org/)
 - Linting with [prettier](https://github.com/prettier/prettier)
 - Static type-checking with [Typescript](https://www.typescriptlang.org/)
 - Opinionatedly scalable folder structure
