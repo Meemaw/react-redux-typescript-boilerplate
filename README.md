@@ -1,5 +1,23 @@
 # React Redux Typescript Boilerplate
 
+<p align="center">
+
+  <a href="https://travis-ci.com/Meemaw/react-redux-typescript-boilerplate">
+    <img
+       src="https://api.travis-ci.com/Meemaw/react-redux-typescript-boilerplate.svg?branch=master" />
+  </a>
+
+  <a href="http://makeapullrequest.com">
+    <img
+         src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" />
+  </a>
+
+  <a href="https://opensource.org/">
+    <img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103"/>
+  </a>
+
+</p>
+
 A highly scalable `react-redux-typescript-boilerplate` with focus on best practices and painless maintenance.
 
 > This project was bootstrapped with [Create React App Typescript](https://github.com/wmonk/create-react-app-typescript).
