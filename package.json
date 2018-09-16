@@ -18,7 +18,7 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom --watchAll",
-    "test-coverage": "react-scripts-ts test --env=jsdom --color --coverage",
+    "test:coverage": "react-scripts-ts test --env=jsdom --color --coverage",
     "eject": "react-scripts-ts eject",
     "lint": "yarn run lint-prettier",
     "lint-prettier": "prettier --config .prettierrc -l 'src/**/*.tsx*' || (echo \nThese files are not formatted correctly && false)",
