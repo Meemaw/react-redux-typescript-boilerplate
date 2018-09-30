@@ -13,7 +13,7 @@ interface CoinmarketCapResource {
 }
 
 const CoinmarketCapResource: CoinmarketCapResource = {
-  getTicker: GET('https://api.coinmarketcap.com/v2/ticker/', false),
+  getTicker: GET('https://api.coinmarketcap.com/v2/ticker/', { authenticated: false }),
 };
 
 export default CoinmarketCapResource;

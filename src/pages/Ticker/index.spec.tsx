@@ -4,7 +4,7 @@ import * as React from 'react';
 import TickerPage from '.';
 import { assertAfterTimeout } from '../../test/utils';
 
-describe('Ticker Page', () => {
+describe('<TickerPage/>', () => {
   it('TickerPage_loadTickerData', done => {
     const wrapper = mount(<TickerPage />);
     assertAfterTimeout(() => {

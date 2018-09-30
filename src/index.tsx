@@ -1,4 +1,4 @@
-import { ConnectedRouter } from 'connected-react-router';
+import { ConnectedRouter as Router } from 'connected-react-router';
 import * as React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
@@ -11,9 +11,9 @@ const store = configureStore();
 function renderApp(App: any) {
   render(
     <Provider store={store}>
-      <ConnectedRouter history={history}>
+      <Router history={history}>
         <App />
-      </ConnectedRouter>
+      </Router>
     </Provider>,
     document.getElementById('root'),
   );

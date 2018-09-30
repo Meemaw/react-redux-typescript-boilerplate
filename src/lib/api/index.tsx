@@ -1,6 +1,11 @@
 import * as EventEmitter from 'events';
 
-import { ResourceFetch, ResourceFetchTemplate } from '../../meta/types/Api';
+import {
+  EndpointConfig,
+  FetchConfig,
+  ResourceFetch,
+  ResourceFetchTemplate,
+} from '../../meta/types/Api';
 import { ContentTypes } from '../../meta/types/Content';
 import { HttpMethod, HttpStatus } from '../../meta/types/Http';
 import { getAuthorizationHeader } from '../auth';
@@ -22,6 +27,11 @@ const contentTypeMappings: Mappings = {
   [ContentTypes.HTML]: resp => resp.text(),
 };
 
+const DEFAULT_ENDPOINT_CONFIG: EndpointConfig = {
+  authenticated: true,
+  endpointHeaders: {},
+};
+
 class Api extends EventEmitter {
   GET = this._makeMethod(HttpMethod.GET);
   POST = this._makeMethod(HttpMethod.POST, true);
@@ -29,14 +39,18 @@ class Api extends EventEmitter {
   DELETE = this._makeMethod(HttpMethod.DELETE);
   PATCH = this._makeMethod(HttpMethod.PATCH, true);
 
-  _makeMethod(method: HttpMethod, hasBody: boolean = false): ResourceFetchTemplate<any> {
+  setDefaultHeader = (key: string, value: string) => {
+    defaultHeaders[key] = value;
+  };
+
+  _makeMethod(method: HttpMethod, hasBody: boolean = false): ResourceFetchTemplate<any, any> {
     return (
       urlTemplate: string,
-      authenticated: boolean = true,
-      endpointHeaders: HeadersInit = {},
-    ): ResourceFetch<any> => {
-      return (data?: any, asFormData: boolean = false): Promise<any> => {
+      endpointConfig: EndpointConfig = DEFAULT_ENDPOINT_CONFIG,
+    ): ResourceFetch<any, any> => {
+      return (data?: any, fetchConfig: FetchConfig = {}): Promise<any> => {
         const url = injectParameters(urlTemplate, data, hasBody);
+        const { authenticated, endpointHeaders } = endpointConfig;
 
         const headers: HeadersInit = {
           Accept: ContentTypes.JSON,
@@ -49,7 +63,7 @@ class Api extends EventEmitter {
           if (typeof data === 'string') {
             body = data;
             headers['Content-Type'] = ContentTypes.TEXT;
-          } else if (data instanceof FormData || asFormData) {
+          } else if (data instanceof FormData || fetchConfig.asFormData) {
             body = toFormData(data);
             headers['Contnent-Type'] = ContentTypes.FORM_DATA;
           } else {
