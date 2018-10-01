@@ -31,7 +31,7 @@ A highly scalable `react-redux-typescript-boilerplate` with focus on best practi
 ### Features
 
 - Linting with [prettier](https://github.com/prettier/prettier)
-- Docker support [docker](https://www.docker.com/)
+- [Docker](https://www.docker.com/) support
 - Static type-checking with [Typescript](https://www.typescriptlang.org/)
 - Opinionatedly scalable folder structure
 - State Management with [Redux](https://redux.js.org/)
@@ -64,7 +64,7 @@ docker container run -it -v $(pwd):/app react:app test                          
 
 ###### Better fetch
 
-Fetching in javascript is a pain point especially when switching between projects. It is overwhelming to remember all resource endpoints and their response structures. Approach implemented in [lib/api](https://github.com/Meemaw/react-typescript-boilerplate/blob/master/src/lib/api/index.tsx) tries to solve that in typed and generic way. Using that, we can create seperate files for different resources and use them as "simple documentation". We can also leverage power of Typescript to statically type those resource responses and payloads and never worry about the types again.
+Fetching in javascript is cumbersome and painfull especially when switching between projects. It is overwhelming to remember all resources and their response objects. Approach implemented in [lib/api](https://github.com/Meemaw/react-redux-typescript-boilerplate/blob/master/src/lib/api/index.tsx) tries to solve that in strongly typed and generic way. Taking advantage of it, we can leverage power of Typescript interfaces to statically type those resource responses and payloads and never worry about the types again. Those interfaces should serve as a "simple documentation" so developers coming into your project can understand API and use it effortlessly.
 
 ###### Example
 
@@ -81,9 +81,13 @@ type CoinmarketCapServerResponse = {
   metadata: object;
 };
 
+type GetTickerPayload = {
+  message: string
+}
+
 interface CoinmarketCapResource {
   getTicker: ResourceFetch<CoinmarketCapServerResponse>;
-  getTickerWithPayload: ResourceFetch<CoinmarketCapServerResponse, { message: string }>
+  getTickerWithPayload: ResourceFetch<CoinmarketCapServerResponse, GetTickerPayload>
 }
 
 const CoinmarketCapResource: CoinmarketCapResource = {
@@ -95,10 +99,13 @@ const CoinmarketCapResource: CoinmarketCapResource = {
 async componentDidMount() {
   const resp = await CoinmarketCapResource.getTicker();
   this.setState({ data: resp.data });
+
+  const resp1 = await CoinmarketCapResource.getTickerWithPayload();  // Wont compile
+  const resp2 = await CoinmarketCapResource.getTickerWithPayload({ message: "Message" });  // Will compile
 }
 ```
 
-Using this approach, resp is strongly typed as `CoinmarketCapServerResponse`. Accesing any field that doesnt exist on it will throw an error. Moreover, any parameters passed to getTicker() method will throw an error. This can controlled throught second generic parameter to `ResourceFetch` interface. As in getTickerWithPayload() example, it will only work with { message: string } passed to it. This forces us to allways pass correct fetch payloads and avoid silly bugs and errors.
+Using this approach, resp is strongly typed as `CoinmarketCapServerResponse`. Accesing any field that doesnt exist on it will throw an error. Moreover, any parameters passed to getTicker() method will throw an error. This is controlled throught second generic parameter to `ResourceFetch` interface. As in getTickerWithPayload() example, it will only work with { message: string } passed to it. This forces us to allways pass correct fetch payloads and avoid silly bugs and errors.
 
 ###### Looks great. It looks we define static urls in the resource files. How to use this with dynamic urls?
 
