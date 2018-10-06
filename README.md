@@ -102,6 +102,7 @@ async componentDidMount() {
 
   const resp1 = await CoinmarketCapResource.getTickerWithPayload();  // Wont compile
   const resp2 = await CoinmarketCapResource.getTickerWithPayload({ message: "Message" });  // Will compile
+  const resp3 = await CoinmarketCapResource.getTickerWithPayload({ xxx: 'aba' }); // Wont compile
 }
 ```
 

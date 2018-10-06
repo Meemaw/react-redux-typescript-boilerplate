@@ -2,6 +2,7 @@ import * as EventEmitter from 'events';
 
 import {
   EndpointConfig,
+  FetchApi,
   FetchConfig,
   ResourceFetch,
   ResourceFetchTemplate,
@@ -32,7 +33,7 @@ const DEFAULT_ENDPOINT_CONFIG: EndpointConfig = {
   endpointHeaders: {},
 };
 
-class Api extends EventEmitter {
+class Api extends EventEmitter implements FetchApi {
   GET = this._makeMethod(HttpMethod.GET);
   POST = this._makeMethod(HttpMethod.POST, true);
   PUT = this._makeMethod(HttpMethod.PUT, true);
@@ -48,7 +49,7 @@ class Api extends EventEmitter {
       urlTemplate: string,
       endpointConfig: EndpointConfig = DEFAULT_ENDPOINT_CONFIG,
     ): ResourceFetch<any, any> => {
-      return (data?: any, fetchConfig: FetchConfig = {}): Promise<any> => {
+      return (data: any = undefined, fetchConfig: FetchConfig = {}): Promise<any> => {
         const url = injectParameters(urlTemplate, data, hasBody);
         const { authenticated, endpointHeaders } = endpointConfig;
 
