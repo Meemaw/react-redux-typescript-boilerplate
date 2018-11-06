@@ -1,4 +1,4 @@
-import * as EventEmitter from 'events';
+import { EventEmitter } from 'events';
 
 import {
   EndpointConfig,
@@ -17,7 +17,7 @@ type Mappings = {
   [contentType: string]: (resp: any) => any;
 };
 
-const defaultHeaders: HeadersInit = {};
+const defaultHeaders: any = {};
 
 const contentTypeMappings: Mappings = {
   [ContentTypes.JSON]: resp => resp.json(),
@@ -53,7 +53,7 @@ class Api extends EventEmitter implements FetchApi {
         const url = injectParameters(urlTemplate, data, hasBody);
         const { authenticated, endpointHeaders } = endpointConfig;
 
-        const headers: HeadersInit = {
+        const headers: any = {
           Accept: ContentTypes.JSON,
           ...defaultHeaders,
           ...endpointHeaders,

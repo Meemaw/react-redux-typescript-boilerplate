@@ -2,13 +2,14 @@ import * as React from 'react';
 
 import { CoinmarketCapResource } from '../../resources';
 
-type State = { data: object };
+type State = { data: any };
 
 class TickerPage extends React.Component<object, State> {
-  state = { data: {} };
+  state: State = { data: {} };
 
   async componentDidMount() {
     const resp = await CoinmarketCapResource.getTicker();
+
     this.setState({ data: resp.data });
   }
 

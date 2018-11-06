@@ -1,17 +1,17 @@
-import { ConnectedRouter as Router } from 'connected-react-router';
 import * as React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import AppComponent from './components/App';
-import configureStore, { history } from './store';
+import configureStore from './store';
 
 const store = configureStore();
 
 function renderApp(App: any) {
   render(
     <Provider store={store}>
-      <Router history={history}>
+      <Router>
         <App />
       </Router>
     </Provider>,

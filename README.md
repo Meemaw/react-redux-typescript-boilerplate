@@ -26,7 +26,7 @@
 
 A highly scalable `react-redux-typescript-boilerplate` with focus on best practices and painless maintenance.
 
-> This project was bootstrapped with [Create React App Typescript](https://github.com/wmonk/create-react-app-typescript).
+> This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Features
 

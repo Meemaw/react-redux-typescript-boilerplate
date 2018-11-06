@@ -9,7 +9,7 @@ type Props = {
 };
 
 function Loadable(opts: Props) {
-  return L({
+  return L.default({
     delay: 200,
     timeout: 10,
     loading: Loading,
