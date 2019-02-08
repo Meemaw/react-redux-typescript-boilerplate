@@ -30,17 +30,17 @@ A highly scalable `react-redux-typescript-boilerplate` with focus on best practi
 
 ### Features
 
+- State Management with [Redux](https://redux.js.org/)
 - Linting with [prettier](https://github.com/prettier/prettier)
+- [Storybooks](https://storybook.js.org/) in Typescript
 - [Docker](https://www.docker.com/) support
+- Code splitting with [React Loadable](https://github.com/jamiebuilds/react-loadable)
+- CI integration with [Travis](https://travis-ci.org/)
 - Static type-checking with [Typescript](https://www.typescriptlang.org/)
 - Opinionatedly scalable folder structure
-- State Management with [Redux](https://redux.js.org/)
-- Code splitting with [React Loadable](https://github.com/jamiebuilds/react-loadable)
 - Testing with [Jest](https://jestjs.io/) and [Enzyme](https://github.com/airbnb/enzyme)
 - [Google Analyics](https://analytics.google.com/analytics/web/) HOC for page tracking
 - Highly intuitive and typed approach to resource fetching
-- CI integration with [Travis](https://travis-ci.org/)
-- Storybook [Storybook](https://storybook.js.org/)
 
 ### Getting started
 
