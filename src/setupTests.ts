@@ -18,8 +18,10 @@ console.error = (message: any) => {
   throw new Error(message);
 };
 
+type Store = {[key: string]: any}
+
 class LocalStorageMock {
-  store: object;
+  store: Store
 
   constructor() {
     this.store = {};

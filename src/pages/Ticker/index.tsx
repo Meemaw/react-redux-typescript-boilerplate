@@ -1,15 +1,18 @@
-import * as React from 'react';
+import React from 'react';
 
-import { CoinmarketCapResource } from '../../resources';
+import { TickerResource } from '../../services';
 
-type State = { data: any };
+const initialState = Object.freeze({ data: {} });
 
-class TickerPage extends React.Component<object, State> {
-  state: State = { data: {} };
+type State = {
+  data: any;
+};
+
+class TickerPage extends React.Component<{}, State> {
+  readonly state: State = initialState;
 
   async componentDidMount() {
-    const resp = await CoinmarketCapResource.getTicker();
-
+    const resp = await TickerResource.getTicker();
     this.setState({ data: resp.data });
   }
 
