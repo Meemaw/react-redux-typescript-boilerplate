@@ -70,14 +70,14 @@ Fetching in javascript is cumbersome and painfull especially when switching betw
 ###### Example
 
 ```js
-/* resources/Coinmarketcap */
+/* services/coinmarketcap/TickerResource */
 
-import api from '../../lib/api';
-import { ResourceFetch } from '../../meta/types/Api';
+import api from '../../../lib/api';
+import { ResourceFetch } from '../../../meta/types/Api';
 
 const { GET } = api;
 
-type CoinmarketCapServerResponse = {
+type CoinmarketcapResponse = {
   data: object;
   metadata: object;
 };
@@ -86,28 +86,28 @@ type GetTickerPayload = {
   message: string
 }
 
-interface CoinmarketCapResource {
-  getTicker: ResourceFetch<CoinmarketCapServerResponse>;
-  getTickerWithPayload: ResourceFetch<CoinmarketCapServerResponse, GetTickerPayload>
+interface TickerResource {
+  getTicker: ResourceFetch<CoinmarketcapResponse>;
+  getTickerWithPayload: ResourceFetch<CoinmarketcapResponse, GetTickerPayload>
 }
 
-const CoinmarketCapResource: CoinmarketCapResource = {
+const TickerResource: TickerResource = {
   getTicker: GET('https://api.coinmarketcap.com/v2/ticker/', { authenticated: false }),
 };
 
 /* pages/Ticker */
 
 async componentDidMount() {
-  const resp = await CoinmarketCapResource.getTicker();
+  const resp = await TickerResource.getTicker();
   this.setState({ data: resp.data });
 
-  const resp1 = await CoinmarketCapResource.getTickerWithPayload();  // Wont compile
-  const resp2 = await CoinmarketCapResource.getTickerWithPayload({ message: "Message" });  // Will compile
-  const resp3 = await CoinmarketCapResource.getTickerWithPayload({ xxx: 'aba' }); // Wont compile
+  const resp1 = await TickerResource.getTickerWithPayload();  // Wont compile
+  const resp2 = await TickerResource.getTickerWithPayload({ message: "Message" });  // Will compile
+  const resp3 = await TickerResource.getTickerWithPayload({ xxx: 'aba' }); // Wont compile
 }
 ```
 
-Using this approach, resp is strongly typed as `CoinmarketCapServerResponse`. Accesing any field that doesnt exist on it will throw an error. Moreover, any parameters passed to getTicker() method will throw an error. This is controlled throught second generic parameter to `ResourceFetch` interface. As in getTickerWithPayload() example, it will only work with { message: string } passed to it. This forces us to allways pass correct fetch payloads and avoid silly bugs and errors.
+Using this approach, resp is strongly typed as `CoinmarketcapResponse`. Accesing any field that doesnt exist on it will throw an error. Moreover, any parameters passed to getTicker() method will throw an error. This is controlled throught second generic parameter to `ResourceFetch` interface. As in getTickerWithPayload() example, it will only work with { message: string } passed to it. This forces us to allways pass correct fetch payloads and avoid silly bugs and errors.
 
 ###### Looks great. It looks we define static urls in the resource files. How to use this with dynamic urls?
 
