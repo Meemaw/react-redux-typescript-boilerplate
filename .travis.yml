@@ -13,4 +13,5 @@ install:
 
 script:
   - yarn lint
-  - yarn test:coverage
+  - yarn test:unit:ci
+  - yarn test:e2e:ci

@@ -1,8 +1,8 @@
 import { mount } from 'enzyme';
-import * as React from 'react';
+import React from 'react';
 
 import TickerPage from '.';
-import { assertAfterTimeout } from '../../test/utils';
+import { assertAfterTimeout } from '../../test/unit/__helpers__';
 
 describe('<TickerPage/>', () => {
   it('TickerPage_loadTickerData', done => {

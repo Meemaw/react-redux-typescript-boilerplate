@@ -16,8 +16,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom --watchAll --verbose",
-    "test:coverage": "react-scripts test --env=jsdom --color --coverage --verbose",
+    "test": "yarn test:unit",
+    "test:unit": "react-scripts test --env=jsdom --watchAll --verbose",
+    "test:unit:ci": "react-scripts test --env=jsdom --color --coverage --verbose --runInBand --ci",
+    "test:e2e": "testcafe chrome src/test/e2e --hostname 127.0.0.1",
+    "test:e2e:headless": "testcafe chrome:headless src/test/e2e --hostname 127.0.0.1",
+    "test:e2e:ci": "BROWSER=none yarn start 2>&1 > /dev/null & wait-on http-get://localhost:3000 && yarn test:e2e:headless",
     "lint": "yarn run lint-prettier",
     "lint-prettier": "prettier --config .prettierrc -l 'src/**/*.tsx*' || (echo \nThese files are not formatted correctly && false)",
     "prettier": "prettier --config .prettierrc --write 'src/**/*.tsx*'",
@@ -41,6 +45,7 @@
     "enzyme-adapter-react-16": "^1.9.1",
     "prettier": "^1.16.4",
     "sinon": "^7.2.3",
+    "testcafe": "^1.0.0",
     "typescript": "3.3.3"
   },
   "jest": {
