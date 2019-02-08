@@ -53,8 +53,8 @@ A highly scalable `react-redux-typescript-boilerplate` with focus on best practi
 yarn install                              // install dependencies
 yarn start                                // start the app
 yarn build                                // build the app
-yarn test                                 // test
-yarn test:coverage                        // test with coverage
+yarn test:unit                            // run unit tests
+yarn test:e2e                             // run e2e tests
 ```
 
 ###### Docker
