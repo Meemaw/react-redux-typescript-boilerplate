@@ -8,7 +8,7 @@ const homePage = new HomePage();
 
 fixture('<Home />').page(baseUrl);
 
-test('Logs in with correct credentials', async t => {
+test('Matches correct Home header', async t => {
   const header = await Selector(homePage.headerSelector);
   await t.expect(header.innerText).eql('React Redux Typescript Boilerplate');
 });

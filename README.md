@@ -9,17 +9,19 @@
 <p align="center">
 
   <a href="https://travis-ci.com/Meemaw/react-redux-typescript-boilerplate">
-    <img
-       src="https://api.travis-ci.com/Meemaw/react-redux-typescript-boilerplate.svg?branch=master" />
+    <img alt="Travis CI" src="https://api.travis-ci.com/Meemaw/react-redux-typescript-boilerplate.svg?branch=master" />
   </a>
 
   <a href="http://makeapullrequest.com">
-    <img
-         src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" />
+    <img alt="Make a pull request" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" />
   </a>
 
   <a href="https://opensource.org/">
-    <img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103"/>
+    <img alt="Open Source" src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103"/>
+  </a>
+
+  <a href="https://github.com/DevExpress/testcafe">
+    <img alt="Tested with TestCafe" src="https://img.shields.io/badge/tested%20with-TestCafe-2fa4cf.svg">
   </a>
 
 </p>
@@ -38,7 +40,8 @@ A highly scalable `react-redux-typescript-boilerplate` with focus on best practi
 - CI integration with [Travis](https://travis-ci.org/)
 - Static type-checking with [Typescript](https://www.typescriptlang.org/)
 - Opinionatedly scalable folder structure
-- Testing with [Jest](https://jestjs.io/) and [Enzyme](https://github.com/airbnb/enzyme)
+- Unit testing with [Jest](https://jestjs.io/) and [Enzyme](https://github.com/airbnb/enzyme)
+- E2E testing with [Testcafe](https://devexpress.github.io/testcafe/)
 - [Google Analyics](https://analytics.google.com/analytics/web/) HOC for page tracking
 - Highly intuitive and typed approach to resource fetching
 
