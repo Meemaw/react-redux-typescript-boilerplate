@@ -40,6 +40,7 @@ A highly scalable `react-redux-typescript-boilerplate` with focus on best practi
 - [Google Analyics](https://analytics.google.com/analytics/web/) HOC for page tracking
 - Highly intuitive and typed approach to resource fetching
 - CI integration with [Travis](https://travis-ci.org/)
+- Storybook [Storybook](https://storybook.js.org/)
 
 ### Getting started
 
