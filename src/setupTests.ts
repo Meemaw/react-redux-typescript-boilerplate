@@ -2,13 +2,13 @@ import '@testing-library/jest-dom/extend-expect';
 
 const originalConsoleError = console.error;
 
+// Throw Error if any of those occurs during unit tests
+const THROWING_MESSAGES = ['SyntaxError:', 'ECONNREFUSED'];
+
 console.error = (message: string) => {
   originalConsoleError(message);
 
-  if (String(message).indexOf('SyntaxError: ') >= 0) {
-    throw new Error(message);
-  }
-  if (String(message).indexOf('ECONNREFUSED') >= 0) {
+  if (THROWING_MESSAGES.includes(String(message))) {
     throw new Error(message);
   }
 };
