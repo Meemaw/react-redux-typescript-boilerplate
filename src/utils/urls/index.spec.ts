@@ -1,4 +1,4 @@
-import { injectParameters } from '.';
+import { injectParameters } from '../urls';
 
 describe('urls', () => {
   it('injectParameters_removesColon_onEmptyData', () => {

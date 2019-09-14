@@ -1,5 +1,4 @@
-import api from 'util/api';
-
+import api from 'utils/api';
 import { applyMiddleware, compose, createStore, StoreEnhancer, Store } from 'redux';
 import thunk, { ThunkMiddleware } from 'redux-thunk';
 import { devToolsEnhancer } from 'redux-devtools-extension';

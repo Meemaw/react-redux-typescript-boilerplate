@@ -68,14 +68,14 @@ docker container run -it -v $(pwd):/app react:app test                          
 
 ###### Better fetch
 
-Fetching in javascript is cumbersome and painfull especially when switching between projects. It is overwhelming to remember all resources and their response objects. Approach implemented in [util/api](https://github.com/Meemaw/react-redux-typescript-boilerplate/blob/master/src/util/api/index.tsx) tries to solve that in strongly typed and generic way. Taking advantage of it, we can leverage power of Typescript interfaces to statically type those resource responses and payloads and never worry about the types again. Those interfaces should serve as a "simple documentation" so developers coming into your project can understand API and use it effortlessly.
+Fetching in javascript is cumbersome and painfull especially when switching between projects. It is overwhelming to remember all resources and their response objects. Approach implemented in [utils/api](https://github.com/Meemaw/react-redux-typescript-boilerplate/blob/master/src/utils/api/index.tsx) tries to solve that in strongly typed and generic way. Taking advantage of it, we can leverage power of Typescript interfaces to statically type those resource responses and payloads and never worry about the types again. Those interfaces should serve as a "simple documentation" so developers coming into your project can understand API and use it effortlessly.
 
 ###### Example
 
 ```js
 /* services/coinmarketcap/TickerResource */
 
-import api from 'util/api';
+import api from 'utils/api';
 import { ResourceFetch } from 'meta/types/Api';
 
 const { GET } = api;
@@ -121,7 +121,7 @@ const fetchFunction = GET('https://api.coinmarketcap.com/v:version/ticker/');
 const resp = await fetchFunction({ version: 2 });
 ```
 
-This also works for queryParams. More examples can be seen in [test file](https://github.com/Meemaw/react-typescript-boilerplate/blob/master/src/util/urls/index.spec.tsx).
+This also works for queryParams. More examples can be seen in [test file](https://github.com/Meemaw/react-typescript-boilerplate/blob/master/src/utils/urls/index.spec.tsx).
 
 ```js
 const fetchFunction = GET('https://api.coinmarketcap.com/ticker/');

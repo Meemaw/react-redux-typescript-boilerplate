@@ -1,4 +1,4 @@
-import { toFormData } from '.';
+import { toFormData } from '../form';
 
 describe('form', () => {
   it('toFormData_returnsFormData', () => {
