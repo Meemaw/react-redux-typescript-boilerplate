@@ -1,11 +1,11 @@
-import * as actionTypes from '../actionTypes';
+import { Action } from 'redux';
 
-export interface ILogout {
-  type: actionTypes.LOGOUT;
-}
+import { LOGOUT } from '../actionTypes';
 
-export const logout = (): ILogout => ({
-  type: actionTypes.LOGOUT,
+export type LogoutAction = Action<LOGOUT>;
+
+export const logout = (): LogoutAction => ({
+  type: LOGOUT,
 });
 
-export type AuthAction = ILogout;
+export type AuthAction = LogoutAction;

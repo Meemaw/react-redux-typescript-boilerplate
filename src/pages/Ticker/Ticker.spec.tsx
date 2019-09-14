@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from 'test/utils';
+import { waitForElementToBeRemoved } from '@testing-library/dom';
 
 import TickerPage from './index';
-import { waitForElementToBeRemoved } from '@testing-library/dom';
 
 describe('<Ticker />', () => {
   it.only('Should display listing', async done => {

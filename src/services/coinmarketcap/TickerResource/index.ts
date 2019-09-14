@@ -1,5 +1,5 @@
-import api from '../../../lib/api';
-import { ResourceFetch } from '../../../meta/types/Api';
+import api from 'lib/api';
+import { ResourceFetch } from 'meta/types/Api';
 import { Dictionary } from 'lodash';
 
 const { GET } = api;

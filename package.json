@@ -22,9 +22,10 @@
     "test:e2e": "testcafe chrome e2e --hostname 127.0.0.1",
     "test:e2e:headless": "testcafe chrome:headless e2e --hostname 127.0.0.1",
     "test:e2e:ci": "BROWSER=none yarn start 2>&1 > /dev/null & wait-on http-get://localhost:3000 && yarn test:e2e:headless",
-    "lint": "yarn run lint-prettier",
-    "lint-prettier": "prettier --config .prettierrc -l 'src/**/*.tsx*' || (echo \nThese files are not formatted correctly && false)",
-    "prettier": "prettier --config .prettierrc --write 'src/**/*.tsx*'",
+    "lint": "concurrently \"yarn prettier\" \"yarn eslint\"",
+    "eslint": "eslint --max-warnings 0 --ext .ts 'src/**/*'",
+    "prettier": "prettier --config .prettierrc -l 'src/**/*.{ts,tsx}*' || (echo \nThese files are not formatted correctly && false)",
+    "prettier:fix": "prettier --config .prettierrc --write 'src/**/*.tsx*'",
     "storybook": "start-storybook -p 6001 -c .storybook"
   },
   "dependencies": {
@@ -51,22 +52,20 @@
     "@types/react-router-redux": "^5.0.18",
     "@types/sinon": "^7.0.13",
     "@types/webpack-env": "^1.14.0",
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "@typescript-eslint/parser": "^2.2.0",
     "babel-loader": "^8.0.6",
+    "concurrently": "^4.1.2",
+    "eslint": "^6.4.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-testcafe": "^0.2.1",
     "prettier": "^1.18.2",
     "sinon": "^7.4.2",
     "testcafe": "^1.5.0",
-    "typescript": "3.3.3",
+    "typescript": "3.5.3",
     "wait-on": "^3.3.0"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/actions/**",
-      "src/reducers/**",
-      "src/pages/**",
-      "src/components/**",
-      "src/hocs/**",
-      "src/lib/**"
-    ]
   },
   "browserslist": [
     ">0.2%",

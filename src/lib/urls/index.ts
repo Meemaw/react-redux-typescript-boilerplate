@@ -1,5 +1,6 @@
 import * as querystring from 'querystring';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const injectParameters = (urlTemplate: string, data: any, hasBody = true): string => {
   let url = urlTemplate;
 

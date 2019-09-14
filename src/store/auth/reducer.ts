@@ -1,7 +1,7 @@
 import * as actionTypes from 'store/actionTypes';
+import { Reducer } from 'redux';
 
 import { AuthAction } from './actions';
-import { Reducer } from 'redux';
 
 export type AuthState = {};
 

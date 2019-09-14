@@ -1,8 +1,9 @@
+import { ROOT_PATH, TICKER_PATH } from 'constants/paths';
+
 import React from 'react';
 import { Switch } from 'react-router-dom';
 import PageRoute from 'components/PageRoute';
 import Navbar from 'components/Navbar';
-import { ROOT_PATH, TICKER_PATH } from 'constants/paths';
 
 const HomePage = React.lazy(() => import('./Home'));
 const TickerPage = React.lazy(() => import('./Ticker'));

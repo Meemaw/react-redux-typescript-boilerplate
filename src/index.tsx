@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-
 import AppProviders from 'containers/AppProvider';
 import App from 'pages';
 

@@ -40,7 +40,7 @@ A highly scalable `react-redux-typescript-boilerplate` with focus on best practi
 - CI integration with [Travis](https://travis-ci.org/)
 - Static type-checking with [Typescript](https://www.typescriptlang.org/)
 - Opinionatedly scalable folder structure
-- Unit testing with [Jest](https://jestjs.io/) and [Enzyme](https://github.com/airbnb/enzyme)
+- Unit testing with [Jest](https://jestjs.io/) and [RTL](https://testing-library.com/docs/react-testing-library/intro)
 - E2E testing with [Testcafe](https://devexpress.github.io/testcafe/)
 - [Google Analyics](https://analytics.google.com/analytics/web/) HOC for page tracking
 - Highly intuitive and typed approach to resource fetching
@@ -75,8 +75,8 @@ Fetching in javascript is cumbersome and painfull especially when switching betw
 ```js
 /* services/coinmarketcap/TickerResource */
 
-import api from '../../../lib/api';
-import { ResourceFetch } from '../../../meta/types/Api';
+import api from 'lib/api';
+import { ResourceFetch } from 'meta/types/Api';
 
 const { GET } = api;
 

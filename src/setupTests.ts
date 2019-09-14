@@ -1,7 +1,5 @@
 import '@testing-library/jest-dom/extend-expect';
 
-const globalAny: any = global;
-
 const originalConsoleError = console.error;
 
 console.error = (message: string) => {

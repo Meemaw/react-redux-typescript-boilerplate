@@ -1,9 +1,10 @@
-import React from 'react';
-import { render } from 'test/utils';
 import * as Paths from 'constants/paths';
 
-import Navbar from './index';
+import React from 'react';
+import { render } from 'test/utils';
 import { fireEvent } from '@testing-library/dom';
+
+import Navbar from './index';
 
 describe('<Navbar />', () => {
   it('Can navigate between Ticker and Home page', () => {

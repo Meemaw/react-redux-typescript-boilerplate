@@ -1,4 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { EventEmitter } from 'events';
+
+import { Dictionary } from 'lodash';
 
 import {
   EndpointConfig,
@@ -17,7 +20,7 @@ type Mappings = {
   [contentType: string]: (resp: any) => any;
 };
 
-const defaultHeaders: any = {};
+const defaultHeaders: Dictionary<string> = {};
 
 const contentTypeMappings: Mappings = {
   [ContentTypes.JSON]: resp => resp.json(),
@@ -44,7 +47,7 @@ class Api extends EventEmitter implements FetchApi {
     defaultHeaders[key] = value;
   };
 
-  _makeMethod(method: HttpMethod, hasBody: boolean = false): ResourceFetchTemplate<any, any> {
+  _makeMethod(method: HttpMethod, hasBody = false): ResourceFetchTemplate<any, any> {
     return (
       urlTemplate: string,
       endpointConfig: EndpointConfig = DEFAULT_ENDPOINT_CONFIG,
@@ -93,10 +96,14 @@ class Api extends EventEmitter implements FetchApi {
       headers,
       body,
     })
-      .then((response: any) => {
+      .then(response => {
         this.emit(`${response.status}`, url);
         const contentType = response.headers.get('Content-Type');
-        const mappingFunction = contentTypeMappings[contentType] || (resp => resp.arrayBuffer());
+        const defaultMapping = (resp: Response) => resp.arrayBuffer();
+        let mappingFunction = contentType ? contentTypeMappings[contentType] : defaultMapping;
+        if (!mappingFunction) {
+          mappingFunction = defaultMapping;
+        }
 
         return new Promise(resolve => resolve(mappingFunction(response)))
           .catch(err => {
@@ -106,7 +113,7 @@ class Api extends EventEmitter implements FetchApi {
               message: err,
             });
           })
-          .then((responseBody: any) => {
+          .then(responseBody => {
             if (response.ok) {
               return responseBody;
             }
@@ -127,7 +134,7 @@ class Api extends EventEmitter implements FetchApi {
             }
           });
       })
-      .catch((err: any) => {
+      .catch(err => {
         return err.type
           ? Promise.reject(err)
           : Promise.reject({

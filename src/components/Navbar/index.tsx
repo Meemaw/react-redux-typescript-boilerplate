@@ -1,6 +1,7 @@
+import * as Paths from 'constants/paths';
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import * as Paths from 'constants/paths';
 
 const Navbar: React.FC = () => {
   return (

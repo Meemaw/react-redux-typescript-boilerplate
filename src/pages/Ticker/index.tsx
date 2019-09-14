@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
+import Loading from 'components/Loading';
 import { TickerResource } from 'services';
 import { TickerData } from 'services/coinmarketcap/TickerResource';
-import Loading from '../../components/Loading';
 
 const TickerPage: React.FC = () => {
   const [loading, setLoading] = useState(true);

@@ -1,4 +1,5 @@
-export const toFormData = (data: any): FormData => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const toFormData = <T extends { [key: string]: any }>(data: T): FormData => {
   if (data instanceof FormData) {
     return data;
   }

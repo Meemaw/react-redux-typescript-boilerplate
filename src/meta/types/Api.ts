@@ -21,10 +21,11 @@ export type EndpointConfig = {
   endpointHeaders?: HeadersInit;
 };
 
-export interface FetchApi {
-  GET: ResourceFetchTemplate<any, any>;
-  POST: ResourceFetchTemplate<any, any>;
-  PATCH: ResourceFetchTemplate<any, any>;
-  DELETE: ResourceFetchTemplate<any, any>;
-  PUT: ResourceFetchTemplate<any, any>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface FetchApi<R = any, P = any> {
+  GET: ResourceFetchTemplate<R, P>;
+  POST: ResourceFetchTemplate<R, P>;
+  PATCH: ResourceFetchTemplate<R, P>;
+  DELETE: ResourceFetchTemplate<R, P>;
+  PUT: ResourceFetchTemplate<R, P>;
 }
