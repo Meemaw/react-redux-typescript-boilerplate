@@ -1,7 +1,8 @@
+import api from 'util/api';
+
 import { applyMiddleware, compose, createStore, StoreEnhancer, Store } from 'redux';
 import thunk, { ThunkMiddleware } from 'redux-thunk';
 import { devToolsEnhancer } from 'redux-devtools-extension';
-import api from 'lib/api';
 import { logout } from 'store/auth';
 import rootReducer, { RootReducer } from 'store/rootReducer';
 import { RootAction, RootState } from 'store/types';

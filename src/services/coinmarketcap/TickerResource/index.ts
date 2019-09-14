@@ -1,4 +1,5 @@
-import api from 'lib/api';
+import api from 'util/api';
+
 import { ResourceFetch } from 'meta/types/Api';
 import { Dictionary } from 'lodash';
 
