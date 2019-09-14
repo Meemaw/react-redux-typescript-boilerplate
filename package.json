@@ -29,6 +29,7 @@
     "storybook": "start-storybook -p 6001 -c .storybook"
   },
   "dependencies": {
+    "@sentry/browser": "^5.6.3",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-ga": "^2.6.0",

@@ -1,3 +1,5 @@
+import SentryUtils from 'util/sentry';
+
 import React, { useState, useEffect } from 'react';
 import Loading from 'components/Loading';
 import { TickerResource } from 'services';
@@ -8,10 +10,12 @@ const TickerPage: React.FC = () => {
   const [data, setData] = useState<TickerData>({});
 
   useEffect(() => {
-    TickerResource.getTicker().then(resp => {
-      setData(resp.data);
-      setLoading(false);
-    });
+    TickerResource.getTicker()
+      .then(resp => {
+        setData(resp.data);
+        setLoading(false);
+      })
+      .catch(SentryUtils.captureException);
   }, []);
 
   return (
