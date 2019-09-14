@@ -1,29 +1,23 @@
-import * as React from 'react';
+import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
 
-import AppComponent from './components/App';
-import configureStore from './store';
+import AppProviders from 'containers/AppProvider';
+import App from 'pages';
 
-const store = configureStore();
-
-function renderApp(App: any) {
+function renderApp(AppComponent: typeof App) {
   render(
-    <Provider store={store}>
-      <Router>
-        <App />
-      </Router>
-    </Provider>,
+    <AppProviders>
+      <AppComponent />
+    </AppProviders>,
     document.getElementById('root'),
   );
 }
 
-renderApp(AppComponent);
+renderApp(App);
 
 if (module.hot) {
-  module.hot.accept('./components/App', () => {
-    const NextApp = require('./components/App').default;
+  module.hot.accept('./pages', () => {
+    const NextApp: typeof App = require('./pages').default;
     renderApp(NextApp);
   });
 }

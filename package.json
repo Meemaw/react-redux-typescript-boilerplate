@@ -1,55 +1,62 @@
 {
   "name": "react-redux-typescript-boilerplate",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "author": "Meemaw <ematej.snuderl@gmail.com>",
   "license": "MIT",
-  "private": true,
-  "dependencies": {
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "react-ga": "^2.5.7",
-    "react-loadable": "^5.5.0",
-    "react-redux": "^6.0.0",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.3",
-    "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+  "engines": {
+    "node": "^8.10.0 || ^10.13.0 || >=11.10.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Meemaw/react-redux-typescript-boilerplate"
+  },
+  "bugs": {
+    "url": "https://github.com/Meemaw/react-redux-typescript-boilerplate/issues"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "yarn test:unit",
-    "test:unit": "react-scripts test --env=jsdom --watchAll --verbose",
+    "test:unit": "react-scripts test --env=jsdom --watchAll --verbose --runInBand",
     "test:unit:ci": "react-scripts test --env=jsdom --color --coverage --verbose --runInBand --ci",
-    "test:e2e": "testcafe chrome src/test/e2e --hostname 127.0.0.1",
-    "test:e2e:headless": "testcafe chrome:headless src/test/e2e --hostname 127.0.0.1",
+    "test:e2e": "testcafe chrome e2e --hostname 127.0.0.1",
+    "test:e2e:headless": "testcafe chrome:headless e2e --hostname 127.0.0.1",
     "test:e2e:ci": "BROWSER=none yarn start 2>&1 > /dev/null & wait-on http-get://localhost:3000 && yarn test:e2e:headless",
     "lint": "yarn run lint-prettier",
     "lint-prettier": "prettier --config .prettierrc -l 'src/**/*.tsx*' || (echo \nThese files are not formatted correctly && false)",
     "prettier": "prettier --config .prettierrc --write 'src/**/*.tsx*'",
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook -p 6001 -c .storybook"
+  },
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-ga": "^2.6.0",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "^3.1.1",
+    "redux": "^4.0.4",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "@storybook/react": "^4.1.11",
-    "@types/enzyme": "^3.1.17",
-    "@types/enzyme-adapter-react-16": "^1.0.3",
-    "@types/jest": "^24.0.0",
-    "@types/node": "10.12.23",
-    "@types/react": "^16.8.2",
-    "@types/react-dom": "16.8.0",
-    "@types/react-loadable": "^5.5.0",
-    "@types/react-redux": "^7.0.1",
-    "@types/react-router-dom": "^4.3.1",
-    "@types/react-router-redux": "^5.0.17",
-    "@types/sinon": "^7.0.5",
-    "@types/webpack-env": "^1.13.7",
-    "enzyme": "^3.8.0",
-    "enzyme-adapter-react-16": "^1.9.1",
-    "prettier": "^1.16.4",
-    "sinon": "^7.2.3",
-    "testcafe": "^1.0.0",
+    "@storybook/react": "^5.2.0",
+    "@testing-library/jest-dom": "^4.1.0",
+    "@testing-library/react": "^9.1.4",
+    "@types/jest": "^24.0.18",
+    "@types/node": "12.7.5",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "16.9.0",
+    "@types/react-redux": "^7.1.2",
+    "@types/react-router-dom": "^4.3.5",
+    "@types/react-router-redux": "^5.0.18",
+    "@types/sinon": "^7.0.13",
+    "@types/webpack-env": "^1.14.0",
+    "babel-loader": "^8.0.6",
+    "prettier": "^1.18.2",
+    "sinon": "^7.4.2",
+    "testcafe": "^1.5.0",
     "typescript": "3.3.3",
-    "wait-on": "^3.2.0"
+    "wait-on": "^3.3.0"
   },
   "jest": {
     "collectCoverageFrom": [

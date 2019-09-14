@@ -1,30 +1,35 @@
-import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
-import thunk from 'redux-thunk';
+import { applyMiddleware, compose, createStore, StoreEnhancer, Store } from 'redux';
+import thunk, { ThunkMiddleware } from 'redux-thunk';
+import { devToolsEnhancer } from 'redux-devtools-extension';
 
-import { logout } from '../actions/auth';
-import api from '../lib/api';
-import * as reducers from '../reducers';
+import api from 'lib/api';
+import { logout } from 'store/auth';
+import rootReducer, { RootReducer } from 'store/rootReducer';
+import { RootAction, RootState } from 'store/types';
 
-const enhancers: any[] = [];
+const enhancers: StoreEnhancer[] = [];
 
-const middleware = [thunk];
+if (process.env.NODE_ENV !== 'production') {
+  enhancers.push(devToolsEnhancer({}));
+}
 
-const composedEnhancers = compose(
+const middleware = [thunk as ThunkMiddleware<RootState, RootAction>];
+
+const composedEnhancers: StoreEnhancer = compose(
   applyMiddleware(...middleware),
   ...enhancers,
 );
 
-export default function initStore(initialState: object = {}) {
-  const rootReducer = combineReducers({
-    ...reducers,
-  });
-
+export default function initStore(
+  initialState: Partial<RootState> = {},
+): Store<RootState, RootAction> {
   const store = createStore(rootReducer, initialState, composedEnhancers);
 
   if (process.env.NODE_ENV !== 'production') {
     if (module.hot) {
-      module.hot.accept('../reducers', () => {
-        store.replaceReducer(rootReducer);
+      module.hot.accept('./rootReducer', () => {
+        const nextRootReducer: RootReducer = require('./rootReducer');
+        store.replaceReducer(nextRootReducer);
       });
     }
   }
