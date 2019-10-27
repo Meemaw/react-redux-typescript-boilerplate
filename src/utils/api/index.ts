@@ -69,7 +69,7 @@ class Api extends EventEmitter implements FetchApi {
             headers['Content-Type'] = ContentTypes.TEXT;
           } else if (data instanceof FormData || fetchConfig.asFormData) {
             body = toFormData(data);
-            headers['Contnent-Type'] = ContentTypes.FORM_DATA;
+            headers['Content-Type'] = ContentTypes.FORM_DATA;
           } else {
             body = JSON.stringify(data);
             headers['Content-Type'] = ContentTypes.JSON;
@@ -138,10 +138,10 @@ class Api extends EventEmitter implements FetchApi {
         return err.type
           ? Promise.reject(err)
           : Promise.reject({
-              type: 'ConnectionRefused',
-              status: HttpStatus.SERVER_ERROR,
-              body: 'Check your internet connection',
-            });
+            type: 'ConnectionRefused',
+            status: HttpStatus.SERVER_ERROR,
+            body: 'Check your internet connection',
+          });
       });
   }
 }
