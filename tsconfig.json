@@ -1,21 +1,20 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "allowJs": true,
+    "module": "esnext",
+    "strict": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
     "baseUrl": "src",
     "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noUnusedLocals": true,
     "noEmit": true,
     "lib": ["es2018", "dom"],
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "allowJs": true
   },
   "include": ["src"]
 }

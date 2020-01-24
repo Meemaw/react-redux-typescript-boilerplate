@@ -1,20 +1,25 @@
 import { render as renderImpl } from '@testing-library/react';
 import React from 'react';
-import { RootState } from 'store/types';
-import AppProviders from 'containers/AppProvider';
+import AppProviders from 'containers/AppProviders';
 
-export type RenderOptions = {
-  initialState?: Partial<RootState>;
-};
+import {
+  createTestBrowserHistory,
+  createTestStore,
+  BaseRenderOptions,
+} from './configure';
 
-function render(component: React.ReactNode, options: RenderOptions = {}) {
-  const { initialState = {} } = options;
+function render(component: React.ReactNode, options: BaseRenderOptions = {}) {
+  const { redux: renderInitialState = {}, pathname } = options;
+  const history = createTestBrowserHistory(pathname);
+  const store = createTestStore(renderInitialState);
 
   const renderResult = renderImpl(
-    <AppProviders initialState={initialState}>{component}</AppProviders>,
+    <AppProviders history={history} store={store}>
+      {component}
+    </AppProviders>
   );
 
-  return renderResult;
+  return { ...renderResult, history, store };
 }
 
 export default render;

@@ -1,6 +1,11 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
-import TickerPage from './index';
+import TickerPage from './Ticker';
 
-storiesOf('Ticker Page', module).add('Default', () => <TickerPage />);
+export default {
+  title: 'Ticker',
+};
+
+export const Base = () => {
+  return <TickerPage />;
+};

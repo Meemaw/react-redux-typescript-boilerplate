@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from 'test/utils';
-import { waitForElementToBeRemoved } from '@testing-library/dom';
+import { waitForElementToBeRemoved } from '@testing-library/react';
 
 import TickerPage from './index';
 
 describe('<Ticker />', () => {
-  it.only('Should display listing', async done => {
+  it('Should display listing', async () => {
     const { queryByText, getByTestId } = render(<TickerPage />);
     expect(queryByText('Ticker')).toBeInTheDocument();
     expect(queryByText('Loading...')).toBeInTheDocument();
@@ -17,7 +17,5 @@ describe('<Ticker />', () => {
 
     const firstListing = tickerList.firstChild as HTMLElement;
     expect(firstListing.textContent).toContain('Bitcoin');
-
-    done();
   });
 });
