@@ -21,7 +21,8 @@
     "eslint": "yarn eslint:changed 'src/**/*.{ts,tsx}' .",
     "eslint:changed": "eslint --config .eslintrc.production.js",
     "prettier": "prettier --config .prettierrc -l 'src/**/*.{js,ts,tsx}' || (echo \"\nThese files are not formatted correctly\" && false)",
-    "storybook": "start-storybook -p 6006 -s public"
+    "storybook": "start-storybook -p 6006 -s public",
+    "storybook:build": "build-storybook"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.2.3",
