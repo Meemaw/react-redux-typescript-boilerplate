@@ -30,7 +30,7 @@
 
 </p>
 
-A highly scalable `react-redux-typescript-boilerplate` with focus on best practices and painless maintenance.
+Opinionated `react-redux-typescript-boilerplate` with focus on best practices and painless developer experience.
 
 > This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
