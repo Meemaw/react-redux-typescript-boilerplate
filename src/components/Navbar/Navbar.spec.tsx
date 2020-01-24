@@ -1,14 +1,13 @@
-import * as Paths from 'constants/paths';
-
 import React from 'react';
 import { render } from 'test/utils';
-import { fireEvent } from '@testing-library/dom';
+import { fireEvent } from '@testing-library/react';
+import * as Paths from 'constants/navigation';
 
-import Navbar from './index';
+import { Base } from './Navbar.stories';
 
 describe('<Navbar />', () => {
   it('Can navigate between Ticker and Home page', () => {
-    const { getByText } = render(<Navbar />);
+    const { getByText } = render(<Base />);
     expect(window.location.pathname).toEqual(Paths.ROOT_PATH);
 
     fireEvent.click(getByText('Ticker'));

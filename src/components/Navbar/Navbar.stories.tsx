@@ -1,6 +1,11 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
-import Navbar from './index';
+import Navbar from './Navbar';
 
-storiesOf('Navbar', module).add('Default', () => <Navbar />);
+export default {
+  title: 'Navbar',
+};
+
+export const Base = () => {
+  return <Navbar />;
+};

@@ -8,8 +8,8 @@
 
 <p align="center">
 
-  <a href="https://travis-ci.com/Meemaw/react-redux-typescript-boilerplate">
-    <img alt="Travis CI" src="https://api.travis-ci.com/Meemaw/react-redux-typescript-boilerplate.svg?branch=master" />
+  <a href="https://github.com/Meemaw/react-redux-typescript-boilerplate/actions">
+    <img alt="Github Action" src="https://github.com/Meemaw/react-redux-typescript-boilerplate/workflows/website/badge.svg" />
   </a>
 
   <a href="http://makeapullrequest.com">
@@ -21,109 +21,47 @@
   </a>
 
   <a href="https://github.com/DevExpress/testcafe">
-    <img alt="Tested with TestCafe" src="https://img.shields.io/badge/tested%20with-TestCafe-2fa4cf.svg">
+    <img alt="TestCafe" src="https://img.shields.io/badge/tested%20with-TestCafe-2fa4cf.svg">
+  </a>
+
+  <a href="https://codecov.io/gh/Meemaw/react-redux-typescript-boilerplate">
+    <img alt="Codecov" src="https://codecov.io/gh/Meemaw/react-redux-typescript-boilerplate/branch/master/graph/badge.svg" />
   </a>
 
 </p>
 
-A highly scalable `react-redux-typescript-boilerplate` with focus on best practices and painless maintenance.
+Opinionated `react-redux-typescript-boilerplate` with focus on best practices and painless developer experience.
 
 > This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### Features
+# Features
 
-- State Management with [Redux](https://redux.js.org/)
+- State Management with [Redux Toolkit](https://redux-toolkit.js.org/)
 - Linting with [prettier](https://github.com/prettier/prettier) and [eslint](https://eslint.org/)
-- [Storybooks](https://storybook.js.org/) in Typescript
+- [Storybooks](https://storybook.js.org/)
 - [Docker](https://www.docker.com/) support
 - Code splitting with [React Suspense](https://reactjs.org/docs/code-splitting.html)
-- CI integration with [Travis](https://travis-ci.org/)
-- Static type-checking with [Typescript](https://www.typescriptlang.org/)
+- CI integration with [Github Actions](https://github.com/actions)
 - Unit testing with [Jest](https://jestjs.io/) and [RTL](https://testing-library.com/docs/react-testing-library/intro)
 - E2E testing with [Testcafe](https://devexpress.github.io/testcafe/)
-- [Google Analyics](https://analytics.google.com/analytics/web/) hook for page tracking
-- [Sentry](https://sentry.io/welcome/) integration for error tracking
-- Highly intuitive and typed approach to resource fetching
 
-### Getting started
+# Getting started
 
-###### Locally
+## Locally
 
 ```sh
-yarn install                              // install dependencies
-yarn start                                // start the app
-yarn build                                // build the app
-yarn test:unit                            // run unit tests
-yarn test:e2e                             // run e2e tests
+➜ yarn install                              // install dependencies
+➜ yarn start                                // start the app
+➜ yarn build                                // build the app
+➜ yarn test                                 // run unit tests
+➜ yarn test:e2e                             // run e2e tests
 ```
 
-###### Docker
+## Docker
 
 ```sh
-docker build . -t react:app                                                            // build the react docker image
-docker run -it -p 3000:3000 react:app                                                  // runs react app on port 3000
-docker container run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app          // runs react app with hot realoding
-docker container run -it -v $(pwd):/app react:app test                                 // runs tests inside docker
-```
-
-###### Better fetch
-
-Fetching in javascript is cumbersome and painfull especially when switching between projects. It is overwhelming to remember all resources and their response objects. Approach implemented in [utils/api](https://github.com/Meemaw/react-redux-typescript-boilerplate/blob/master/src/utils/api/index.tsx) tries to solve that in strongly typed and generic way. Taking advantage of it, we can leverage power of Typescript interfaces to statically type those resource responses and payloads and never worry about the types again. Those interfaces should serve as a "simple documentation" so developers coming into your project can understand API and use it effortlessly.
-
-###### Example
-
-```js
-/* services/coinmarketcap/TickerResource */
-
-import api from 'utils/api';
-import { ResourceFetch } from 'meta/types/Api';
-
-const { GET } = api;
-
-type CoinmarketcapResponse = {
-  data: object;
-  metadata: object;
-};
-
-type GetTickerPayload = {
-  message: string
-}
-
-interface TickerResource {
-  getTicker: ResourceFetch<CoinmarketcapResponse>;
-  getTickerWithPayload: ResourceFetch<CoinmarketcapResponse, GetTickerPayload>
-}
-
-const TickerResource: TickerResource = {
-  getTicker: GET('https://api.coinmarketcap.com/v2/ticker/', { authenticated: false }),
-};
-
-/* pages/Ticker */
-
-async componentDidMount() {
-  const resp = await TickerResource.getTicker();
-  this.setState({ data: resp.data });
-
-  const resp1 = await TickerResource.getTickerWithPayload();  // Wont compile
-  const resp2 = await TickerResource.getTickerWithPayload({ message: "Message" });  // Will compile
-  const resp3 = await TickerResource.getTickerWithPayload({ xxx: 'aba' }); // Wont compile
-}
-```
-
-Using this approach, resp is strongly typed as `CoinmarketcapResponse`. Accesing any field that doesnt exist on it will throw an error. Moreover, any parameters passed to getTicker() method will throw an error. This is controlled throught second generic parameter to `ResourceFetch` interface. As in getTickerWithPayload() example, it will only work with { message: string } passed to it. This forces us to allways pass correct fetch payloads and avoid silly bugs and errors.
-
-###### Looks great. It looks we define static urls in the resource files. How to use this with dynamic urls?
-
-No worries. Url passed to exported GET/... function is actually an urlTemplate. Dynamic path sections can be annotated with `:`. Those will get replaced at invocation if `data` object passed contains template key. Following code would create url equivalent to the one in example above.
-
-```js
-const fetchFunction = GET('https://api.coinmarketcap.com/v:version/ticker/');
-const resp = await fetchFunction({ version: 2 });
-```
-
-This also works for queryParams. More examples can be seen in [test file](https://github.com/Meemaw/react-typescript-boilerplate/blob/master/src/utils/urls/index.spec.tsx).
-
-```js
-const fetchFunction = GET('https://api.coinmarketcap.com/ticker/');
-const resp = await fetchFunction({ version: 2 }); // Would fetch https://api.coinmarketcap.com/ticker/?version=2
+➜ docker build . -t react:app                                                            // build the react docker image
+➜ docker run -it -p 3000:3000 react:app                                                  // runs react app on port 3000
+➜ docker container run -it -p 3000:3000 -p 35729:35729 -v $(pwd):/app react:app          // runs react app with hot realoding
+➜ docker container run -it -v $(pwd):/app react:app test                                 // runs tests inside docker
 ```

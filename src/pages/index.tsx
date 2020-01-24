@@ -1,5 +1,3 @@
-import { ROOT_PATH, TICKER_PATH } from 'constants/paths';
-
 import React from 'react';
 import { Switch } from 'react-router-dom';
 import PageRoute from 'components/PageRoute';
@@ -13,8 +11,8 @@ const App = () => {
     <div className="App">
       <Navbar />
       <Switch>
-        <PageRoute exact path={ROOT_PATH} component={HomePage} />
-        <PageRoute exact path={TICKER_PATH} component={TickerPage} />
+        <PageRoute exact path="/" component={HomePage} />
+        <PageRoute exact path="/ticker" component={TickerPage} />
       </Switch>
     </div>
   );

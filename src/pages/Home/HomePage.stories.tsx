@@ -1,6 +1,11 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
-import HomePage from './index';
+import HomePage from './HomePage';
 
-storiesOf('Home page', module).add('Default', () => <HomePage />);
+export default {
+  title: 'HomePage',
+};
+
+export const Base = () => {
+  return <HomePage />;
+};

@@ -1,6 +1,11 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 
-import Loading from './index';
+import Loading from './Loading';
 
-storiesOf('Loading', module).add('Default', () => <Loading />);
+export default {
+  title: 'Loading',
+};
+
+export const Base = () => {
+  return <Loading />;
+};

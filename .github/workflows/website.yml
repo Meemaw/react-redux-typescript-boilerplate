@@ -1,0 +1,55 @@
+name: website
+on: [push]
+
+jobs:
+  test_unit:
+    name: Unit tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: npm install, lint and unit test
+        run: |
+          yarn install
+          yarn eslint
+          yarn test --coverage
+        env:
+          CI: true
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+  test_e2e:
+    name: E2E tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install Packages & Build App
+        run: |
+          yarn install
+          yarn build
+      - name: Serve App
+        run: |
+          mkdir -p artifacts/testface
+          yarn serve -s build -l 3000 2>&1 | tee artifacts/testface/serve.log &
+          node_modules/wait-on/bin/wait-on http-get://localhost:3000 --timeout 60000
+      - uses: DevExpress/testcafe-action@latest
+        with:
+          args: 'chrome:headless e2e/specs'
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: testface-screenshots
+          path: artifacts/testcafe
