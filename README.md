@@ -8,8 +8,8 @@
 
 <p align="center">
 
-  <a href="https://travis-ci.com/Meemaw/react-redux-typescript-boilerplate">
-    <img alt="Travis CI" src="https://api.travis-ci.com/Meemaw/react-redux-typescript-boilerplate.svg?branch=master" />
+  <a href="https://github.com/Meemaw/react-redux-typescript-boilerplate/actions">
+    <img alt="Github Action" src="https://github.com/Meemaw/react-redux-typescript-boilerplate/workflows/website/badge.svg" />
   </a>
 
   <a href="http://makeapullrequest.com">
@@ -21,7 +21,11 @@
   </a>
 
   <a href="https://github.com/DevExpress/testcafe">
-    <img alt="Tested with TestCafe" src="https://img.shields.io/badge/tested%20with-TestCafe-2fa4cf.svg">
+    <img alt="TestCafe" src="https://img.shields.io/badge/tested%20with-TestCafe-2fa4cf.svg">
+  </a>
+
+  <a href="https://codecov.io/gh/Meemaw/react-redux-typescript-boilerplate">
+    <img alt="Codecov" src="https://codecov.io/gh/Meemaw/react-redux-typescript-boilerplate/branch/master/graph/badge.svg" />
   </a>
 
 </p>

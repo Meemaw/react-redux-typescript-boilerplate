@@ -1,4 +1,4 @@
-import configureStore from 'store';
+import configureStore from 'utils/store';
 import auth from './auth';
 
 describe('auth', () => {
