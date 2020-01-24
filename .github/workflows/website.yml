@@ -46,3 +46,8 @@ jobs:
       - uses: DevExpress/testcafe-action@latest
         with:
           args: 'chrome:headless e2e/specs'
+      - uses: actions/upload-artifact@latest
+        if: failure()
+        with:
+          name: testface-screenshots
+          path: artifacts/testcafe/screenshots/
