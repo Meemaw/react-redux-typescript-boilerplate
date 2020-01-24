@@ -36,12 +36,13 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '10.x'
-      - name: Install packages & build App
+      - name: Install Packages & Build App
         run: |
           yarn install
           yarn build
       - name: Serve App
         run: |
+          mkdir -p artifacts/testface
           yarn serve -s build -l 3000 2>&1 | tee artifacts/testface/serve.log &
           node_modules/wait-on/bin/wait-on http-get://localhost:3000 --timeout 60000
       - uses: DevExpress/testcafe-action@latest
