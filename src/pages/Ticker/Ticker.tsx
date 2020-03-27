@@ -8,7 +8,7 @@ const TickerPage = () => {
 
   useEffect(() => {
     setLoading(true);
-    CoinmarketcapResource.getTicker().then(response => {
+    CoinmarketcapResource.getTicker().then((response) => {
       setCoins(Object.values(response.data));
     });
   }, [setCoins, setLoading]);
@@ -20,7 +20,7 @@ const TickerPage = () => {
         <Loading />
       ) : (
         <ul data-testid="ticker-list">
-          {coins.map(coin => {
+          {coins.map((coin) => {
             return (
               <li key={coin.id}>{`${
                 coin.name
