@@ -38,7 +38,7 @@ Opinionated `react-redux-typescript-boilerplate` with focus on best practices an
 
 - State Management with [Redux Toolkit](https://redux-toolkit.js.org/)
 - Linting with [prettier](https://github.com/prettier/prettier) and [eslint](https://eslint.org/)
-- [Storybooks](https://storybook.js.org/)
+- Up to date [Storybook](https://meemaw.github.io/react-redux-typescript-boilerplate)
 - [Docker](https://www.docker.com/) support
 - Code splitting with [React Suspense](https://reactjs.org/docs/code-splitting.html)
 - CI integration with [Github Actions](https://github.com/actions)
