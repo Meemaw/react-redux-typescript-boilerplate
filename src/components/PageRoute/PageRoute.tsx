@@ -2,11 +2,7 @@ import React, { Suspense } from 'react';
 import { RouteProps, RouteComponentProps, Route } from 'react-router';
 import Loading from 'components/Loading';
 
-const PageRoute: React.FC<RouteProps> = ({
-  component: Component,
-  render,
-  ...rest
-}) => {
+const PageRoute = ({ component: Component, render, ...rest }: RouteProps) => {
   const fallbackRenderFn = (props: RouteComponentProps) => {
     if (!Component) {
       // eslint-disable-next-line no-console

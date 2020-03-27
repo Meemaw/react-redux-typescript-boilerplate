@@ -16,7 +16,7 @@ jobs:
       - name: npm install, lint and unit test
         run: |
           yarn install
-          yarn eslint
+          yarn lint
           yarn test --coverage
         env:
           CI: true
